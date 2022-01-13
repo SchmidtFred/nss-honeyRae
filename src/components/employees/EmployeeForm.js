@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { addEntity } from "../ApiManager";
 import { useHistory } from "react-router-dom";
 
 export const EmployeeForm = () => {
@@ -15,17 +16,8 @@ export const EmployeeForm = () => {
             name: employee.name,
             specialty: employee.specialty
         }
-
-        const fetchOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newEmployee)
-        }
         
-        fetch("http://localhost:8088/employees", fetchOptions)
-            .then(() => history.push("/employees"))
+        addEntity(newEmployee, "employees", history);
     }
 
     return (
