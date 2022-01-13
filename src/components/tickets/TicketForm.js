@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { addEntity } from "../ApiManager";
 import { useHistory } from "react-router-dom";
 
 export const TicketForm = () => {
@@ -19,16 +20,8 @@ export const TicketForm = () => {
             dateCompleted: ""
         }
 
-        const fetchOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newTicket)
-        }
 
-        return fetch("http://localhost:8088/serviceTickets", fetchOptions)
-            .then(() => history.push("/tickets"))
+        addEntity(newTicket, "tickets", history);
     }
 
     return (

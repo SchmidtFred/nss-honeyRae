@@ -12,13 +12,13 @@ export const TicketList = () => {
 	}, []);
 
 	const fetchTickets = () => {
-		fetch("http://localhost:8088/serviceTickets?_expand=employee&_expand=customer")
+		fetch("http://localhost:8088/tickets?_expand=employee&_expand=customer")
 			.then(res => res.json())
 			.then(data => updateTickets(data))
 	};
 
 	const deleteTicket = (id) => {
-		fetch(`http://localhost:8088/serviceTickets/${id}`, {method: "DELETE"})
+		fetch(`http://localhost:8088/tickets/${id}`, {method: "DELETE"})
 			.then(() => fetchTickets())
 	}
 
